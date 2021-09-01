@@ -30,14 +30,3 @@ e.g. `-t "skill damage"`
 If the search text will not be recognized as a condition, you can emit the `-t`.
 
 You can add additional options before the `-t` part. Options will be applied to all `-t` part after them. You can use `reset` to clear the options.  
-#### Option: Search in fields
-These conditions are OR combined. If you indicate none, all fields will be searched.
-- `leader` or `lb` to search in leader buff.
-- `skill` or `s` to search in skill.
-- `ability` or `a` to search in all abilities.
-- `a12` or `a456` etc. to search in specific abilities.
-- `unison` or `u` to search in skill and ability 1, 2, 4, 5, 6. 
-#### Option: Negative search
-Use `exclude` or `ex` condition to get results not containing the text.
-#### Option: Regular expression
-Use `regexp` or `r` 
