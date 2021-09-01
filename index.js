@@ -49,15 +49,7 @@ const DB = require('./data');
 var data = DB.getData('en');
 var dataja = DB.getData('ja');
 var datazhtw = DB.getData('zh-TW');
-const {
-  Client
-} = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
+
 app.get('/', function (req, res) {
   res.render(viewFolder + 'index.ejs', {
     title: 'Eliya',
@@ -240,7 +232,6 @@ var mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect();
-client.connect();
 io.on('connection', function (socket) {
   socket.on('connected', function (lang) {
     switch (lang) {
@@ -272,12 +263,12 @@ io.on('connection', function (socket) {
 
 
   socket.on('add url', function (list) {
-    client.query("INSERT INTO short_urls (url,equips) VALUES ('" + list.chars + "', '" + list.equips + "') RETURNING id", function (err, res) {
+    connection.query("INSERT INTO short_urls (url,equips) VALUES ('" + list.chars + "', '" + list.equips + "') ", function (err, res) {
       if (err) throw err;
       var id;
-		id = res.rows[0].id;
+		id = res.insertId;
       io.to(socket.id).emit('url added', {
-        id: res.rows[0].id,
+        id: res.insertId,
         url: list
       });
       var target = id - 9980;
