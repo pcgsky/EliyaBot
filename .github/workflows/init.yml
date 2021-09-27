@@ -25,10 +25,13 @@ jobs:
           sudo rm -rf data.js
           sudo rm -rf package.json
           sudo rm -rf package-lock.json
+          echo 111
           git checkout master
+          echo 222
           git merge --no-edit upstream/master
+          echo 333
           git push origin master
-
+echo 444
           
           #sync tag
           git fetch upstream --tags
