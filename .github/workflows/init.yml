@@ -31,8 +31,8 @@ jobs:
           git merge --no-edit upstream/master
           echo 333
           git push origin master
-echo 444
-          
+          echo 444
+
           #sync tag
           git fetch upstream --tags
           git push --tags
